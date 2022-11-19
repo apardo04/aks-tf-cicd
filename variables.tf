@@ -13,3 +13,7 @@ variable "tenant" {
 variable "subscription" {
   description = "Azure Subscription ID"
 }
+
+variable "region" {
+  description = "Azure Region"
+}
