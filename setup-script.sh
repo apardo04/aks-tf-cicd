@@ -14,7 +14,6 @@ az group create -l eastus -n $resourceGroupName
 az storage account create -n $storageAccountName -g $resourceGroupName -l eastus --sku Standard_LRS
 az storage container create --name $containerName --account-name $storageAccountName \
 
-# kubectl
+# After Provisioning, Run the following command to retrieve the access credentials for your cluster and automatically configure kubectl.
 az aks get-credentials --resource-group $(terraform output -raw resource_group_name) --name $(terraform output -raw kubernetes_cluster_name)
-
-# Give aks identity Arcpull on ACR
+    # CLI Return: Merged "light-eagle-aks" as current context in /Users/dos/.kube/config

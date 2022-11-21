@@ -2,6 +2,10 @@ variable "appId" {
   description = "Azure Kubernetes Service Cluster service principal"
 }
 
+variable "objectId" {
+  description = "Azure Kubernetes Service Cluster service principal"
+}
+
 variable "secret" {
   description = "Azure Kubernetes Service Cluster password"
 }

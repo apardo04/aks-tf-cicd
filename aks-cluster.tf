@@ -10,7 +10,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = "myapp-aks"
 
   default_node_pool {
-    name                = "default"
+    name = "default"
     #node_count          = 2
     max_count           = 3
     min_count           = 1
@@ -19,8 +19,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     os_disk_size_gb     = 30
   }
 
-  identity {
-    type = "SystemAssigned"
+  service_principal {
+    client_id     = var.appId
+    client_secret = var.secret
   }
 
   role_based_access_control_enabled = true
