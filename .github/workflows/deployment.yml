@@ -29,7 +29,6 @@ jobs:
         run: terraform validate -no-color
 
       - id: plan
-        id: plan
         run: terraform plan -no-color -var'appId=${{ secrets.TF_SPN_ID }}' -var'objectId=${{ secrets.TF_SPN_OBJECT }}' -var'secret=${{ secrets.secret }}' -var'tenant=${{ secrets.tenant }}' -var'subscription=${{ secrets.subscription }}' -var'secret=${{ secrets.secret }}' -var'tenant=${{ secrets.tenant }}' -var'region=${{ secrets.region }}'
         continue-on-error: true
 
