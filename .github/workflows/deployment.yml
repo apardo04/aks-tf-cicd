@@ -11,7 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
-      
+        with:
+          terraform_version: 1.3.3
+
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
@@ -24,7 +26,7 @@ jobs:
           
       - name: 'Terraform init'
         id: init
-        run: terraform init
+        run: terraform init -var appId="${{ secrets.TF_SPN_ID }}" -var objectId="${{ secrets.TF_SPN_OBJECT }}" -var secret="${{ secrets.TF_SPN_SECRET }}" -var tenant="${{ secrets.AZURE_TENANT }}" -var subscription="${{ secrets.AZURE_SUBSCRIPTION }}" -var region="${{ secrets.REGION }}"
 
       - name: 'Terraform validate'
         id: validate
