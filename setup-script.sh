@@ -1,13 +1,13 @@
 #! /bin/sh
 
 # Variables
-spnName="terraform"
+spnName="terraform-actions"
 resourceGroupName="terraform"
 storageAccountName="terraformstateadrianpa"
 containerName="terraform"
 
 # Create SPN
-az ad sp create-for-rbac --display-name=$spnName --role="Owner" --scopes="/subscriptions/7bbf6a19-62e5-4383-bf13-ccc773342b84"
+az ad sp create-for-rbac --display-name=$spnName --role="Contributor" --scopes="/subscriptions/7bbf6a19-62e5-4383-bf13-ccc773342b84"
 
 # Create RG, SA, Container for TF State File
 az group create -l eastus -n $resourceGroupName
