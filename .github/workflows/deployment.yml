@@ -15,7 +15,7 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          creds: '{"clientId":"${{ secrets.TF_SPN_ID }}","clientSecret":"${{ secrets.secrets.TF_SPN_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION }}","tenantId":"${{ secrets.AZURE_TENANT }}"}
+          creds: '{"clientId":"${{ secrets.TF_SPN_ID }}","clientSecret":"${{ secrets.secrets.TF_SPN_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION }}","tenantId":"${{ secrets.AZURE_TENANT }}"}'
 
       - name: 'Terraform fmt'
         id: fmt
