@@ -28,7 +28,7 @@ jobs:
         id: init
         env:
           ARM_CLIENT_ID:"${{ secrets.TF_SPN_ID }}"
-          ARM_CLIENT_SECRET:"${{ secrets.secrets.TF_SPN_SECRET }}"
+          ARM_CLIENT_SECRET:"${{ secrets.TF_SPN_SECRET }}"
           ARM_SUBSCRIPTION_ID:"${{ secrets.AZURE_SUBSCRIPTION }}"
           ARM_TENANT_ID:"${{ secrets.AZURE_TENANT }}"
         run: terraform init
