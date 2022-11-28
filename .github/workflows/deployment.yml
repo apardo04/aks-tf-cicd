@@ -26,11 +26,12 @@ jobs:
           
       - name: 'Terraform init'
         id: init
+        
         env:
-          ARM_CLIENT_ID:"${{ secrets.TF_SPN_ID }}"
-          ARM_CLIENT_SECRET:"${{ secrets.TF_SPN_SECRET }}"
-          ARM_SUBSCRIPTION_ID:"${{ secrets.AZURE_SUBSCRIPTION }}"
-          ARM_TENANT_ID:"${{ secrets.AZURE_TENANT }}"
+          ARM_CLIENT_ID:  "${{ secrets.TF_SPN_ID }}"
+          ARM_CLIENT_SECRET:  "${{ secrets.TF_SPN_SECRET }}"
+          ARM_SUBSCRIPTION_ID:  "${{ secrets.AZURE_SUBSCRIPTION }}"
+          ARM_TENANT_ID:  "${{ secrets.AZURE_TENANT }}"
         run: terraform init
 
       - name: 'Terraform validate'
