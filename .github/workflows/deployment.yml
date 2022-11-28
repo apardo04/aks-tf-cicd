@@ -4,6 +4,12 @@ on: [push]
 
 jobs:
   terraform:
+    env:
+      ARM_CLIENT_ID:  "${{ secrets.TF_SPN_ID }}"
+      ARM_CLIENT_SECRET:  "${{ secrets.TF_SPN_SECRET }}"
+      ARM_SUBSCRIPTION_ID:  "${{ secrets.AZURE_SUBSCRIPTION }}"
+      ARM_TENANT_ID:  "${{ secrets.AZURE_TENANT }}"
+
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
@@ -17,21 +23,14 @@ jobs:
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
-          #creds: '{"clientId":"${{ secrets.TF_SPN_ID }}","clientSecret":"${{ secrets.secrets.TF_SPN_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION }}","tenantId":"${{ secrets.AZURE_TENANT }}"}'
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: 'Terraform fmt'
         id: fmt
         run: terraform fmt -check
         continue-on-error: true
-          
+        
       - name: 'Terraform init'
         id: init
-        
-        env:
-          ARM_CLIENT_ID:  "${{ secrets.TF_SPN_ID }}"
-          ARM_CLIENT_SECRET:  "${{ secrets.TF_SPN_SECRET }}"
-          ARM_SUBSCRIPTION_ID:  "${{ secrets.AZURE_SUBSCRIPTION }}"
-          ARM_TENANT_ID:  "${{ secrets.AZURE_TENANT }}"
         run: terraform init
 
       - name: 'Terraform validate'
