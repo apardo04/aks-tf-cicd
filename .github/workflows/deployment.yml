@@ -17,16 +17,17 @@ jobs:
         run: terraform fmt -check
         continue-on-error: true
           
-      - name: Terraform Init
+      - name: Terraform init
         id: init
-        run: terraform init -var 'appId=${{ secrets.TF_SPN_ID }}' -var 'objectId=${{ secrets.TF_SPN_OBJECT }}' -var 'secret=${{ secrets.secret }}' -var 'tenant=${{ secrets.tenant }}' -var 'subscription=${{ secrets.subscription }}' -var 'secret=${{ secrets.secret }}' -var 'tenant=${{ secrets.tenant }}' -var 'region=${{ secrets.region }}'
+        run: terraform init -var appId="${{ secrets.TF_SPN_ID }}" -var objectId="${{ secrets.TF_SPN_OBJECT }}" -var secret="${{ secrets.TF_SPN_SECRET }}" -var tenant="${{ secrets.AZURE_TENANT }}" -var subscription="${{ secrets.AZURE_SUBSCRIPTION }}" -var region="${{ secrets.REGION }}"
 
-      - name: Terraform Validate
+      - name: Terraform validate
         id: validate
         run: terraform validate -no-color
 
-      - id: plan
-        run: terraform plan -no-color -var 'appId=${{ secrets.TF_SPN_ID }}' -var 'objectId=${{ secrets.TF_SPN_OBJECT }}' -var 'secret=${{ secrets.secret }}' -var 'tenant=${{ secrets.tenant }}' -var 'subscription=${{ secrets.subscription }}' -var 'secret=${{ secrets.secret }}' -var 'tenant=${{ secrets.tenant }}' -var 'region=${{ secrets.region }}'
+      - name: Terraform plan
+        id: plan
+        run: terraform plan -var appId="${{ secrets.TF_SPN_ID }}" -var objectId="${{ secrets.TF_SPN_OBJECT }}" -var secret="${{ secrets.TF_SPN_SECRET }}" -var tenant="${{ secrets.AZURE_TENANT }}" -var subscription="${{ secrets.AZURE_SUBSCRIPTION }}" -var region="${{ secrets.REGION }}"
         continue-on-error: true
 
       - run: echo ${{ steps.plan.outputs.stdout }}
