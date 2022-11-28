@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name      = "terraform"
-    storage_account_name     = "terraformstateadrianpa"
-    container_name           = "terraform"
-    key                      = "terraform.tfstate"
+    resource_group_name  = "terraform"
+    storage_account_name = "terraformstateadrianpa"
+    container_name       = "terraform"
+    key                  = "terraform.tfstate"
   }
   required_version = ">= 1.3.3"
 }

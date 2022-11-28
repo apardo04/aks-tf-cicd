@@ -26,7 +26,12 @@ jobs:
           
       - name: 'Terraform init'
         id: init
-        run: terraform init -var appId="${{ secrets.TF_SPN_ID }}" -var objectId="${{ secrets.TF_SPN_OBJECT }}" -var secret="${{ secrets.TF_SPN_SECRET }}" -var tenant="${{ secrets.AZURE_TENANT }}" -var subscription="${{ secrets.AZURE_SUBSCRIPTION }}" -var region="${{ secrets.REGION }}"
+        env:
+          ARM_CLIENT_ID="${{ secrets.TF_SPN_ID }}"
+          ARM_CLIENT_SECRET="${{ secrets.secrets.TF_SPN_SECRET }}"
+          ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUBSCRIPTION }}"
+          ARM_TENANT_ID="${{ secrets.AZURE_TENANT }}"
+        run: terraform init
 
       - name: 'Terraform validate'
         id: validate
